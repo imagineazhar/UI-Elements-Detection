@@ -11,7 +11,8 @@ def sharp(image):
     cv2.imwrite("sharp.jpg",image_3)
 
 #load color image
-original_image = cv2.imread('3rd.png')
+image_file = '11th.jpg' 
+original_image = cv2.imread(image_file)
 sharp(original_image)
 image_color = original_image.copy()
 
@@ -163,7 +164,7 @@ for c in contours:
         cv2.imwrite(cropped_path+str(idx) + '.png', new_img)
         
         #draw contours
-        img_outlined=cv2.rectangle(image_color,(x,y),(x+w,y+h),(0,0,255),2)
+        img_outlined=cv2.rectangle(image_color,(x,y),(x+w,y+h),(0,0,255),1)
 show_image(img_outlined)
 del img_outlined
 
