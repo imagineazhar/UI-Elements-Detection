@@ -12,28 +12,34 @@ def sharp(image):
 
 #load color image
 base_address = r'Inputs/'
-image_file = '3rd.png' 
-original_image = cv2.imread(base_address+image_file)
+image_file = '4th.png'
+image_path = base_address + image_file
+original_image = cv2.imread(image_path)
 sharp(original_image)
 image_color = original_image.copy()
 
 #load image
 img = cv2.imread('sharp.jpg',0)
-
 # A kernel of (3 X 3) ones.
-kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+kernel = np.ones((3,3),np.uint8)
 
 # Thresholding the image
-(thresh, img_bin) = cv2.threshold(img, 128, 255,cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+#(thresh, img_bin) = cv2.threshold(img, 200, 255,cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+
+img_bin = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,25,5)
 
 #morpholigical operation
 img_bin_eroded=cv2.erode(img_bin, kernel, iterations=1)
+#img_opening = cv2.morphologyEx(img_bin_eroded, cv2.MORPH_OPEN, kernel)
 
 #Invert Image
 img_bin = ~img_bin_eroded
+#img_bin = ~img_opening#opening
 
 #save image
 cv2.imwrite("binary.jpg",img_bin)
+#cv2.imwrite("binary_1.jpg",img_bin1)
+
 
 #this function opens a new window to show the input image
 def show_image(image):
@@ -180,7 +186,7 @@ def mouse_func(event, x, y, flags, param):
     global drawing,mode
     
     # 2 is the value for the right mouse click
-    if event == cv2.EVENT_MOUSEMOVE: #2:
+    if event == cv2.EVENT_MOUSEMOVE:
         drawing = True
         
         #right click co-ordinates
