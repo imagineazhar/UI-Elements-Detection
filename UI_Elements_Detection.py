@@ -11,8 +11,9 @@ def sharp(image):
     cv2.imwrite("sharp.jpg",image_3)
 
 #load color image
-image_file = '11th.jpg' 
-original_image = cv2.imread(image_file)
+base_address = r'Inputs/'
+image_file = '3rd.png' 
+original_image = cv2.imread(base_address+image_file)
 sharp(original_image)
 image_color = original_image.copy()
 
@@ -156,7 +157,7 @@ for c in contours:
         img_outlined=cv2.rectangle(image_color,(x,y),(x+w,y+h),(255,255,0),2)
     
     # If the box height is greater then 20, widht is >80, then only save it as a box in "cropped/" folder.
-    if (w > 20 and h > 10) and w > 1.5*h and w<445 and h<40:
+    if (w > 20 and h > 10) and w > 1.5*h and w<450 and h<40:
         idx += 1
         
         #ROI extraction
@@ -179,7 +180,7 @@ def mouse_func(event, x, y, flags, param):
     global drawing,mode
     
     # 2 is the value for the right mouse click
-    if event == 2:
+    if event == cv2.EVENT_MOUSEMOVE: #2:
         drawing = True
         
         #right click co-ordinates
