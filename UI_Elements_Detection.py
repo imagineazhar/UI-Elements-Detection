@@ -11,11 +11,11 @@ def sharp(image):
     cv2.imwrite("sharp.jpg",image_3)
 
 #load color image
-base_address = r'Inputs/'
-image_file = '4.png'
+base_address = r'test/'
+image_file = '6.png'
 image_path = base_address + image_file
 original_image = cv2.imread(image_path)
-dim = (1024,600)
+dim = (824,600)
 original_image = cv2.resize(original_image,dim, interpolation = cv2.INTER_AREA)
 sharp(original_image)
 image_color = original_image.copy()
@@ -32,16 +32,12 @@ img_bin = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRE
 
 #morpholigical operation
 img_bin_eroded=cv2.erode(img_bin, kernel, iterations=1)
-#img_opening = cv2.morphologyEx(img_bin_eroded, cv2.MORPH_OPEN, kernel)
 
 #Invert Image
 img_bin = ~img_bin_eroded
-#img_bin = ~img_opening#opening
 
 #save image
 cv2.imwrite("binary.jpg",img_bin)
-#cv2.imwrite("binary_1.jpg",img_bin1)
-
 
 #this function opens a new window to show the input image
 def show_image(image):
@@ -110,9 +106,9 @@ def find_boxes(img_bin):
     
     #img_final_bin = cv2.erode(~img_final_bin, kernel, iterations=1)
     img_final_bin = ~img_final_bin
-    return cv2.threshold(img_final_bin, 128,255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-
-(thres, img_final_bin) = find_boxes(img_bin)
+      
+    return cv2.adaptiveThreshold(img_final_bin,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,25,5)
+img_final_bin = find_boxes(img_bin)
 cv2.imwrite("img_final_bin.jpg",img_final_bin)
 
 def sort_contours(cnts, method="top-to-bottom"):
@@ -156,7 +152,7 @@ for c in contours:
     coordinates.append(crd)
     #
    
-    if (w < 30 and h>15 and w>15 and h < 30):
+    if (w>15 and h>10 and w < 30 and h < 20):
         idx+=1
         #extract ROI
         new_img = img[y:y+h, x:x+w]
@@ -228,10 +224,7 @@ while(1):
         break
 cv2.destroyAllWindows()
 
-
-
 #Show all contours
-#show all contours
 for c in contours:
     
     # Returns the location and width,height for every contour
