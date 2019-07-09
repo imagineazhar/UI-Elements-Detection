@@ -12,9 +12,11 @@ def sharp(image):
 
 #load color image
 base_address = r'Inputs/'
-image_file = '4th.png'
+image_file = '4.png'
 image_path = base_address + image_file
 original_image = cv2.imread(image_path)
+dim = (1024,600)
+original_image = cv2.resize(original_image,dim, interpolation = cv2.INTER_AREA)
 sharp(original_image)
 image_color = original_image.copy()
 
@@ -153,6 +155,7 @@ for c in contours:
     crd = get_cord(x,y,w,h)
     coordinates.append(crd)
     #
+   
     if (w < 30 and h>15 and w>15 and h < 30):
         idx+=1
         #extract ROI
@@ -163,7 +166,7 @@ for c in contours:
         img_outlined=cv2.rectangle(image_color,(x,y),(x+w,y+h),(255,255,0),2)
     
     # If the box height is greater then 20, widht is >80, then only save it as a box in "cropped/" folder.
-    if (w > 20 and h > 10) and w > 1.5*h and w<450 and h<40:
+    if (w > 20 and h > 10) and w<450 and h<40:
         idx += 1
         
         #ROI extraction
@@ -202,7 +205,7 @@ def mouse_func(event, x, y, flags, param):
                         if drawing == True:
                             if mode == True:
                                 cv2.rectangle(original_image,(x,y),(x+w,y+h),(255,255,0),2)
-            if (w > 20 and h > 10) and w > 1.5*h and w<445 and h<40:
+            if (w > 20 and h > 10) and w<445 and h<45:
                 cor  = get_cord(x,y,w,h)
                 for i in cor:
                     if i == cord:
@@ -224,3 +227,16 @@ while(1):
     elif k == ord('p'):
         break
 cv2.destroyAllWindows()
+
+
+
+#Show all contours
+#show all contours
+for c in contours:
+    
+    # Returns the location and width,height for every contour
+    x, y, w, h = cv2.boundingRect(c)
+    
+    #if w > 1.3*h and 40>h>10 and w<450:
+    clk=cv2.rectangle(image_color,(x,y),(x+w,y+h),(0,150,100),2)
+show_image(clk)
