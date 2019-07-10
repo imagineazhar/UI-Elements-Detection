@@ -1,7 +1,20 @@
-# UI Elements Recognition
+# UI Elements Detection
 This repo is about detection and recogniton of UI elements of SAP interface
 - [x] Detection
-- [ ] Recognition
+
+## Custom Functions
+
+| **Function**  | **Description** | **Input**|**Output**|
+| :--------: | :----------: |:-----:|:---------:|
+|    sharp()    | enhances edges of the image  |Image|enhanced Image|
+| show_image()  | shows input image in a separate window, which can'e closed by pressing "0| Image | Image |
+| get_cord()  | captures each pixel inside boundary decribed by<br>(x,y) = starting coordinates of contour<br>(x+w, y+h) = ending coordinates of contour<br>*h = depth of contour <br> w = width of contour*| x , y , w , h| all the pixel values inside region(x:x+w,y:y+h)|
+| find_boxes  | takes binary image as input and does the following**<br>1. Finds verticle and horizontol lines and saves them separately<br>2. Adds both verticle & horizontol images to form contour image<br>3. inverts the image and saves it| binary Image|Image with contours|
+|mouse_func()|1. gets pixeles of contours<br>2. gets coordinate of mouse-pointer's location<br>3. compares those coordinates with pixel coordinate from contour<br>4. if they match, draw boundary of that contour|x , y| Localization of detected contour|
+
+
+
+
 
 ## Method<br>
 ### 1. Binarization of input<br>
