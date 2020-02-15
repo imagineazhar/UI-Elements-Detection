@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+
 from utils import find_boxes, sharp, sort_contours, get_cord
 
 if __name__ == '__main__':
@@ -64,7 +65,7 @@ if __name__ == '__main__':
             img_outlined = cv2.rectangle(image_color, (x, y), (x + w, y + h), (255, 255, 0), 2)
 
         # If the box height is greater then 20, width is >80, then only save it as a box in "cropped/" folder.
-        if (w > 20 and h > 10) and w < 450 and h < 40:
+        if 20 < w < 450 and 10 < h < 40:
             idx += 1
 
             # ROI extraction
@@ -73,4 +74,3 @@ if __name__ == '__main__':
 
             # draw contours
             img_outlined = cv2.rectangle(image_color, (x, y), (x + w, y + h), (0, 0, 255), 1)
-
