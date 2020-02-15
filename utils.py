@@ -40,13 +40,6 @@ img_bin = ~img_bin_eroded
 cv2.imwrite("binary.jpg", img_bin)
 
 
-# this function opens a new window to show the input image
-def show_image(image):
-    cv2.imshow('image', image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
-
 def get_cord(x, y, width, height):
     # get all pixels coordinates in a contour
     index = 0
@@ -60,45 +53,27 @@ def get_cord(x, y, width, height):
     return coords
 
 
-# ###  Kernel
-# **Define two kernels**
-# -  Kernel to detect horizontal lines. 
-# -  Kernel to detect vertical lines.
-
-# Defining a kernel length
-kernel_length = np.array(img).shape[1] // 165
-
-# A verticle kernel of (1 X kernel_length), which will detect all the verticle lines from the image.
-verticle_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, kernel_length))
-
-# A horizontal kernel of (kernel_length X 1), which will help to detect all the horizontal line from the image.
-hori_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernel_length, 1))
-
-# A kernel of (3 X 3) ones.
-kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
-
-
-def find_boxes(img_bin):
+def find_boxes(binary_image: np.ndarray):
     # Defining a kernel length
+
     kernel_length = np.array(img).shape[1] // 195
 
     # A verticle kernel of (1 X kernel_length), which will detect all the verticle lines from the image.
     verticle_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, kernel_length))
 
     # A horizontal kernel of (kernel_length X 1), which will help to detect all the horizontal line from the image.
-    hori_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernel_length, 1))
+    horiz_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernel_length, 1))
 
     # A kernel of (3 X 3) ones.
-    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
 
     # Morphological operation to detect vertical lines from an image
-    img_temp1 = cv2.erode(img_bin, verticle_kernel, iterations=3)
+    img_temp1 = cv2.erode(binary_image, verticle_kernel, iterations=3)
     verticle_lines_img = cv2.dilate(img_temp1, verticle_kernel, iterations=3)
     cv2.imwrite("verticle_lines.jpg", verticle_lines_img)
 
     # Morphological operation to detect horizontal lines from an image
-    img_temp2 = cv2.erode(img_bin, hori_kernel, iterations=3)
-    horizontal_lines_img = cv2.dilate(img_temp2, hori_kernel, iterations=3)
+    img_temp2 = cv2.erode(binary_image, horiz_kernel, iterations=3)
+    horizontal_lines_img = cv2.dilate(img_temp2, horiz_kernel, iterations=3)
     cv2.imwrite("horizontal_lines.jpg", horizontal_lines_img)
 
     # Weighting parameters, this will decide the quantity of an image to be added to make a new image.
@@ -144,9 +119,8 @@ contours, hierarchy = cv2.findContours(img_final_bin, cv2.RETR_TREE, cv2.CHAIN_A
 # Sort all the contours by top to bottom.
 (contours, boundingBoxes) = sort_contours(contours, method="top-to-bottom")
 
-# ### Identifying Contours
+# Identifying Contours
 idx = 0
-cropped_path = 'Cropped/'
 for c in contours:
 
     # Returns the location and width,height for every contour
@@ -160,9 +134,6 @@ for c in contours:
 
     if 30 > w > 15 > 10 and h < 20:
         idx += 1
-        # extract ROI
-        new_img = img[y:y + h, x:x + w]
-        cv2.imwrite(cropped_path + str(idx) + '.png', new_img)
 
         # draw boundary of contour
         img_outlined = cv2.rectangle(image_color, (x, y), (x + w, y + h), (255, 255, 0), 2)
@@ -172,8 +143,6 @@ for c in contours:
         idx += 1
 
         # ROI extraction
-        new_img = img[y:y + h, x:x + w]
-        cv2.imwrite(cropped_path + str(idx) + '.png', new_img)
 
         # draw contours
         img_outlined = cv2.rectangle(image_color, (x, y), (x + w, y + h), (0, 0, 255), 1)
@@ -187,35 +156,25 @@ drawing = False  # true if mouse is pressed
 mode = True  # if True, draw rectangle.
 
 
-def mouse_func(event, x, y, flags, param):
-    global drawing, mode
-
-    # 2 is the value for the right mouse click
+def mouse_func(event, x, y, flags, param, drawing: bool = False, mode: bool = True):
     if event == cv2.EVENT_MOUSEMOVE:
         drawing = True
+    # right click co-ordinates
+    cord = [x, y]
+    for c in contours:
 
-        # right click co-ordinates
-        cord = [x, y]
-        for c in contours:
-
-            # staring points (x,y) and dimensions of contour (w=width, h= height)
-            x, y, w, h = cv2.boundingRect(c)
-            if 15 < w < 30 > 15 and h < 30:
-                cor = get_cord(x, y, w, h)
-                for i in cor:
-                    if i == cord:
-                        if drawing:
-                            if mode:
-                                cv2.rectangle(original_image, (x, y), (x + w, y + h), (255, 255, 0), 2)
-            if (w > 20 and h > 10) and w < 445 and h < 45:
-                cor = get_cord(x, y, w, h)
-                for i in cor:
-                    if i == cord:
-                        if drawing:
-                            if mode:
-                                cv2.rectangle(original_image, (x, y), (x + w, y + h), (0, 0, 255), 1)
-                        # print ("It's a box\n")
-                        # print ('Dimension: '+ str((x+w)-x)+ " X "+ str((y+h)-y))
+        # staring points (x,y) and dimensions of contour (w=width, h= height)
+        x, y, w, h = cv2.boundingRect(c)
+        if 15 < w < 30 > 15 and h < 30:
+            cor = get_cord(x, y, w, h)
+            for i in cor:
+                if i == cord and drawing and mode:
+                    cv2.rectangle(original_image, (x, y), (x + w, y + h), (255, 255, 0), 2)
+        if (w > 20 and h > 10) and w < 445 and h < 45:
+            cor = get_cord(x, y, w, h)
+            for i in cor:
+                if i == cord and drawing and mode:
+                    cv2.rectangle(original_image, (x, y), (x + w, y + h), (0, 0, 255), 1)
 
 
 cv2.namedWindow('Picture', 1)
