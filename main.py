@@ -7,7 +7,7 @@ from utils import find_boxes, sort_contours, get_cord, preprocess_image, save_re
 
 if __name__ == '__main__':
     # load color image
-    base_address = Path('test')
+    base_address = Path('Inputs')
     image_paths = base_address.glob('*.png')
     results_save_dir = Path('results')
     results_save_dir.mkdir(parents=True, exist_ok=True)

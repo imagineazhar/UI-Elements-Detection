@@ -2,15 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe8f8f7e-3fe4-42f2-af58-076352c17a0b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/binary.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/horizontal_lines.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img_final_bin.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output/outline.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output/outline_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output/outline_1a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output/outlined_12th.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output/outlined_14th.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output/outlined_18th.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output/outlined_2nd.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output/outlined_3rd.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output/outlined_4th.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output/outlined_5th.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output/outlined_7th.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output/outlined_9th.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outlined.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharp.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verticle_lines.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/14.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/14a.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/15.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/4.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/5.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/output_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/output_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/output_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/output_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/output_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/output_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/output_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/output_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/output_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/output_8.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="34" column="116" selection-start-line="34" selection-start-column="116" selection-end-line="34" selection-end-column="116" />
+            <state relative-caret-position="153">
+              <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -36,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+              <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -197,12 +230,12 @@
       <option name="presentableId" value="Default" />
       <updated>1581783744797</updated>
       <workItem from="1581783751000" duration="3599000" />
-      <workItem from="1581956753631" duration="1739000" />
+      <workItem from="1581956753631" duration="2040000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5338000" />
+    <option name="totallyTimeSpent" value="5639000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -304,7 +337,7 @@
     <entry file="file://$PROJECT_DIR$/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
@@ -313,8 +346,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="34" column="116" selection-start-line="34" selection-start-column="116" selection-end-line="34" selection-end-column="116" />
+        <state relative-caret-position="153">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
