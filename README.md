@@ -1,2 +1,2 @@
 # UI Elements Detection
-This repo is about detection and recogniton of UI elements of SAP interface.
+Detecing UL elements on a SAP interface using Image Processing and OpenCV
